@@ -13,3 +13,9 @@ The structure of decoder is same as encoder where N=6 we have a feed forward net
 since our model has no recurrence no convulation we add a postional encoding at the bottom of our encoder and decoder our model has same dimensions Dmodel as the embeddings 
 <img width="626" height="152" alt="image" src="https://github.com/user-attachments/assets/eab87b14-0902-4986-a739-7dc293a293ee" />
 we have many choices for positional encodings but we will be using sine and cosine fuctions as they allow to easily learn to attend by relative positions 
+# optimizer
+We used the Adam optimizer 
+<img width="642" height="51" alt="image" src="https://github.com/user-attachments/assets/e2648fda-50b4-4acc-91a4-37721cf490e6" />
+This corresponds to increasing the learning rate linearly for the first warmup_steps training steps,
+and decreasing it thereafter proportionally to the inverse square root of the step number. We used
+warmup_steps = 4000
