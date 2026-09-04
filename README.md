@@ -19,3 +19,5 @@ We used the Adam optimizer
 This corresponds to increasing the learning rate linearly for the first warmup_steps training steps,
 and decreasing it thereafter proportionally to the inverse square root of the step number. We used
 warmup_steps = 4000
+# logs 
+1 - I tested replacing sinusoidal positional encodings with hexadecimal representations. On short sequence lengths, the model performed fine because it could brute-force memorize each position using its parameters as a lookup table.However, as sequence length increased, the model failed to generalize and loss spiked periodically. This happened due to bit-flip jumps at hex boundaries (e.g., 0x0F to 0x10). Because self-attention uses dot products ($QK^T$), these sudden multi-bit flips make consecutive tokens appear completely orthogonal/unrelated in vector space, breaking the continuous positional relationship required for smooth gradient updates.
